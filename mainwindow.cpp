@@ -61,7 +61,7 @@ if((ui->lineEdit->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->li
     }else{
 
         results *r = new results;
-        r.setWindowTitle("Результаты расчета");
+        r->setWindowTitle("Результаты расчета");
         r->show();
 
     }
