@@ -41,7 +41,7 @@ if((ui->lineEdit->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->li
     double dlinna_volni = (ui->lineEdit_3->text()).toDouble();
     double appertura_vert = (ui->lineEdit_4->text()).toDouble();
     double appertura_goriz = (ui->lineEdit_5->text()).toDouble();
-    //double shirina_dn = (ui->lineEdit_6->text()).toDouble();
+    double shirina_dn = (ui->lineEdit_6->text()).toDouble();
 
 
 
