@@ -3,6 +3,7 @@
 #include "results.h"
 #include <QMessageBox>
 #include <cmath>
+#include <QDoubleValidator>
 
 
 int Norma = 0;
@@ -20,6 +21,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
+    ui->pushButton_typeRLS->setEnabled(false);
+    ui->pushButton->setEnabled(false);
+
+   ui->lineEdit->setValidator(new QDoubleValidator);
+   ui->lineEdit_2->setValidator(new QDoubleValidator);
+   ui->lineEdit_3->setValidator(new QDoubleValidator);
+   ui->lineEdit_4->setValidator(new QDoubleValidator);
+   ui->lineEdit_5->setValidator(new QDoubleValidator);
+   ui->lineEdit_6->setValidator(new QDoubleValidator);
 
 }
 
@@ -33,7 +43,7 @@ void MainWindow::on_pushButton_clicked()
 {
 if((ui->lineEdit->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->lineEdit_3->text().isEmpty())||(ui->lineEdit_4->text().isEmpty())||(ui->lineEdit_5->text().isEmpty())||(ui->lineEdit_6->text().isEmpty())){
 
-    QMessageBox::warning(this, "Ошибка ввода данных", "Пожалуйста введите исходные данные!");//Проверка на наличие ввода исходных данных
+    QMessageBox::warning(this, "Ошибка ввода данных", "Пожалуйста введите исходные данные!");
 
 }else{
     double Oslablenie = (ui->lineEdit->text()).toDouble();
@@ -56,15 +66,11 @@ if((ui->lineEdit->text().isEmpty())||(ui->lineEdit_2->text().isEmpty())||(ui->li
     Long_result = QString::number(Long,'g',8);
 
 
-    if(Norma == 0){ //Проверка на то, что выбран тип РЛС
-        QMessageBox::warning(this, "Ошибка ввода данных", "Пожалуйста введите тип РЛС!");
-    }else{
+    results *r = new results;
+    r->setWindowTitle("Результаты расчета");
+    r->show();
 
-        results *r = new results;
-        r->setWindowTitle("Результаты расчета");
-        r->show();
 
-    }
 }
 }
 
@@ -73,11 +79,11 @@ void MainWindow::on_pushButton_typeRLS_clicked()
     if (ui->Secktor->isChecked()){
         Norma = 10;
         ui->statusbar->showMessage("Рассчет производиться для РЛС секторного обзора");
+        ui->pushButton->setEnabled(true);
     }else if (ui->Krug->isChecked()){
         Norma = 25;
         ui->statusbar->showMessage("Рассчет производиться для РЛС кругового обзора");
-    }else {
-        QMessageBox::warning(this, "Ошибка ввода данных", "Пожалуйста введите тип РЛС!");
+        ui->pushButton->setEnabled(true);
     }
 }
 
@@ -96,3 +102,18 @@ void MainWindow::on_Metodika_triggered()
     QMessageBox::about(this, "Методика расчета", " Расчеты произведены в соответствии с: Методические указания по определению и гигиенической регламентации электромагнитных полей,  создаваемых береговыми и судовыми радиолокационными станциями. Утвержденными заместителем Главного государственного врача СССР А.И.Заиченко 2 марта 1987 года № 4258-87");
 }
 
+
+void MainWindow::on_Dannie_triggered()
+{
+    QMessageBox::about(this,"Исходные данные", "Исходные данные");
+}
+
+void MainWindow::on_Secktor_clicked()
+{
+    ui->pushButton_typeRLS->setEnabled(true);
+}
+
+void MainWindow::on_Krug_clicked()
+{
+    ui->pushButton_typeRLS->setEnabled(true);
+}

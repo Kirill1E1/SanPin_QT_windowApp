@@ -30,6 +30,10 @@ private slots:
 
     void on_Dannie_triggered();
 
+    void on_Secktor_clicked();
+
+    void on_Krug_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
